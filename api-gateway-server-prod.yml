@@ -1,0 +1,67 @@
+server:
+  port: ${PORT:1111}
+spring:
+  application:
+    name: api-gateway-server
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AUTH_SERVER_DB
+    username: rdurgesh
+    password: rdurgesh
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    hibernate:
+      ddl-auto: validate
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+      host: http://localhost
+      port: 8500
+  profiles:
+    active:
+    - prod
+  aop:
+    proxy-target-class: true
+zuul:
+  routes:
+    authorization-server:
+      path: /authorization-server/**
+      sensitiveHeaders: null
+      serviceId: authorization-server
+    account-service:
+      path: /account-service/**
+      sensitiveHeaders: null
+      serviceId: account-service
+    employee-service:
+      path: /employee-service/**
+      sensitiveHeaders: null
+      serviceId: employee-service
+security:
+  user:
+    name: root
+    password: password
+  oauth2:
+    client:
+      access-token-uri: http://localhost:9999/oauth/token
+      user-authorization-uri: http://localhost:9999/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      user-info-uri: http://localhost:9999/user
+      preferTokenInfo: false
+  sessions: ALWAYS
+proxy:
+  auth:
+    routes:
+      account-service: oauth2
+      employee-service: oauth2
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.cloud.sleuth: INFO
+    org.springframework.security: INFO
+    org.springframework.cloud.netflix.zuul: TRACE
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+  file: /logs/api-gateway-service/api-gateway-service.log
