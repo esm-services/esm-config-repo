@@ -1,5 +1,13 @@
 server:
-  port: 9999
+  port: ${PORT:9999}
+security:
+  user:
+    name: durgesh
+    password: password
+  oauth2:
+    client:
+      client-id: commandlineinterface
+      client-secret: commandlineinterface
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/AUTH_SERVER_DB

@@ -34,7 +34,7 @@ zuul:
       serviceId: employee-service
 security:
   user:
-    name: root
+    name: durgesh
     password: password
   oauth2:
     client:
