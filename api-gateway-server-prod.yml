@@ -1,8 +1,6 @@
 server:
   port: ${PORT:1111}
 spring:
-  application:
-    name: api-gateway-server
   datasource:
     url: jdbc:postgresql://localhost:5432/AUTH_SERVER_DB
     username: rdurgesh
@@ -18,9 +16,6 @@ spring:
         prefer-ip-address: true
       host: http://localhost
       port: 8500
-  profiles:
-    active:
-    - prod
   aop:
     proxy-target-class: true
 zuul:
