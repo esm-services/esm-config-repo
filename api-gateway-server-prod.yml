@@ -38,11 +38,11 @@ security:
     password: password
   oauth2:
     client:
-      access-token-uri: http://localhost:9999/oauth/token
-      user-authorization-uri: http://localhost:9999/oauth/authorize
+      access-token-uri: http://localhost:1111/authorization-server/oauth/token
+      user-authorization-uri: http://localhost:1111/authorization-server/oauth/authorize
       clientAuthenticationScheme: form
     resource:
-      user-info-uri: http://localhost:9999/user
+      user-info-uri: http://localhost:1111/authorization-server/user
       preferTokenInfo: false
   sessions: ALWAYS
 proxy:
