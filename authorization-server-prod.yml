@@ -10,10 +10,10 @@ security:
       client-secret: commandlineinterface
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/AUTH_SERVER_DB
     username: rdurgesh
     password: rdurgesh
     driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/AUTH_SERVER_DB
   jpa:
     hibernate:
       ddl-auto: validate
