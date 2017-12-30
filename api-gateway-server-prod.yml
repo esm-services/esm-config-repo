@@ -40,7 +40,7 @@ security:
     client:
       access-token-uri: http://localhost:1111/authorization-server/oauth/token
       user-authorization-uri: http://localhost:1111/authorization-server/oauth/authorize
-      clientAuthenticationScheme: form
+      clientAuthenticationScheme: header
     resource:
       user-info-uri: http://localhost:1111/authorization-server/user
       preferTokenInfo: false
